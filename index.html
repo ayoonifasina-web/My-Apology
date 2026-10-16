@@ -142,16 +142,19 @@
         <div class="signature">With a sincere heart ❤️</div>
     </main>
 
-    <script>
-        const button = document.getElementById("revealButton");
-        const message = document.getElementById("secret");
+ 
+<script>
+    const button = document.querySelector("button");
+    const message = document.getElementById("secret");
 
-        button.addEventListener("click", () => {
-            const isOpen = !message.hidden;
+    button.addEventListener("click", function () {
+        if (message.style.display === "block") {
+            message.style.display = "none";
+        } else {
+            message.style.display = "block";
+        }
+    });
+</script>
 
-            message.hidden = isOpen;
-            button.setAttribute("aria-expanded", String(!isOpen));
-        });
-    </script>
 </body>
 </html>
