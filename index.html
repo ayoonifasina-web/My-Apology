@@ -3,29 +3,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffdde1">
+    <meta name="description" content="A sincere apology and a message from my heart.">
     <title>A Message From My Heart ❤️</title>
 
     <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-            padding: 20px;
+        * {
             box-sizing: border-box;
         }
 
+        body {
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        }
+
         .letter {
-            max-width: 400px;
-            background: white;
+            width: 100%;
+            max-width: 460px;
             padding: 30px;
+            background: white;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
         }
 
         .heart {
@@ -39,19 +46,24 @@
 
         p {
             color: #555;
-            line-height: 1.8;
             font-size: 16px;
+            line-height: 1.8;
         }
 
         button {
             background: #d6336c;
             color: white;
-            border: none;
+            border: 0;
             padding: 13px 22px;
             border-radius: 25px;
             font-size: 16px;
             cursor: pointer;
             margin-top: 15px;
+        }
+
+        button:focus-visible {
+            outline: 3px solid #ee9ca7;
+            outline-offset: 4px;
         }
 
         #secret {
@@ -67,14 +79,22 @@
             margin-top: 25px;
             font-weight: bold;
         }
+
+        @media (max-width: 400px) {
+            .letter {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
-    <div class="letter">
-
-        <div class="heart">❤️</div>
+    <main class="letter">
+        <div class="heart" aria-hidden="true">❤️</div>
 
         <h1>From My Heart to Yours</h1>
 
@@ -97,11 +117,16 @@
             your feelings matter to me.
         </p>
 
-        <button onclick="revealMessage()">
+        <button
+            type="button"
+            id="revealButton"
+            aria-expanded="false"
+            aria-controls="secret"
+        >
             One Last Thing ❤️
         </button>
 
-        <div id="secret">
+        <div id="secret" hidden>
             <p>
                 No matter how things feel between us right now,
                 I'm grateful for you and the memories we share.
@@ -117,23 +142,19 @@
             <p><strong>I'm truly sorry. 💗</strong></p>
         </div>
 
-        <div class="signature">
-            With a sincere heart ❤️
-        </div>
-
-    </div>
+        <div class="signature">With a sincere heart ❤️</div>
+    </main>
 
     <script>
-        function revealMessage() {
-            const message = document.getElementById("secret");
+        const button = document.getElementById("revealButton");
+        const message = document.getElementById("secret");
 
-            if (message.style.display === "block") {
-                message.style.display = "none";
-            } else {
-                message.style.display = "block";
-            }
-        }
+        button.addEventListener("click", () => {
+            const isOpen = !message.hidden;
+
+            message.hidden = isOpen;
+            button.setAttribute("aria-expanded", String(!isOpen));
+        });
     </script>
-
 </body>
 </html>
